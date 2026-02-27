@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torch AI — CIReN Career Path Selector</title>
+  <meta name="description" content="AI-powered career path selector for CIReN students. Answer a few questions and get your personalized career kit." />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       WELCOME SCREEN
+  ══════════════════════════════════════════════════════════ -->
+  <section id="screen-welcome" class="screen">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-text">CIR<span>e</span>N</span>
+        <span class="logo-badge">Torch AI</span>
+      </div>
+      <span class="ciren-tag">Campus Innovation &amp; Research Network</span>
+    </header>
+
+    <div class="welcome-hero">
+      <div class="hero-eyebrow">
+        <i data-lucide="flame"></i>
+        AI-Powered Career Discovery
+      </div>
+
+      <h1 class="hero-title">
+        Find Your <span class="accent">Career Path</span><br />
+        in Minutes
+      </h1>
+
+      <p class="hero-sub">
+        Answer 5 quick questions about your major, interests, and goals.
+        Torch AI will match you to the right career kit and help you get started.
+      </p>
+
+      <div class="hero-actions">
+        <button id="btn-find-path" class="btn-primary">
+          <i data-lucide="zap"></i>
+          Find My Path
+        </button>
+        <button id="btn-browse" class="btn-secondary">
+          <i data-lucide="grid-3x3"></i>
+          Browse All Kits
+        </button>
+      </div>
+    </div>
+
+    <div class="welcome-stats">
+      <div class="stat-item">
+        <span class="stat-num">23</span>
+        <span class="stat-label">Career Kits</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Fields</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Questions</span>
+      </div>
+    </div>
+
+    <div class="welcome-fields">
+      <div class="section-label">Available fields</div>
+      <div class="fields-grid">
+        <div class="field-preview-card">
+          <div class="fpc-icon"><i data-lucide="monitor"></i></div>
+          <div class="fpc-title">CS / IT</div>
+          <div class="fpc-count">9 career kits</div>
+        </div>
+        <div class="field-preview-card">
+          <div class="fpc-icon"><i data-lucide="flask-conical"></i></div>
+          <div class="fpc-title">Pharmacy</div>
+          <div class="fpc-count">6 career kits</div>
+        </div>
+        <div class="field-preview-card">
+          <div class="fpc-icon"><i data-lucide="briefcase"></i></div>
+          <div class="fpc-title">Business Administration</div>
+          <div class="fpc-count">8 career kits</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       QUESTIONS SCREEN
+  ══════════════════════════════════════════════════════════ -->
+  <section id="screen-questions" class="screen">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-text">CIR<span>e</span>N</span>
+        <span class="logo-badge">Torch AI</span>
+      </div>
+    </header>
+
+    <div class="questions-layout">
+      <div class="q-progress">
+        <div class="q-progress-header">
+          <span class="q-progress-label">Your Journey</span>
+          <span id="q-progress-text">Question 1 of 5</span>
+        </div>
+        <div class="q-progress-bar">
+          <div id="q-progress-fill"></div>
+        </div>
+      </div>
+
+      <div class="q-body">
+        <h2 id="q-label">Question text here</h2>
+        <div id="q-input-area"></div>
+      </div>
+
+      <div class="q-footer">
+        <button id="q-back" class="btn-ghost">
+          <i data-lucide="arrow-left"></i>
+          Back
+        </button>
+        <button id="q-next" disabled>
+          Next
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       LOADING SCREEN
+  ══════════════════════════════════════════════════════════ -->
+  <section id="screen-loading" class="screen">
+    <div class="loading-center">
+      <div class="loading-flame">
+        <i data-lucide="flame"></i>
+      </div>
+      <h3 class="loading-title">Analyzing your profile…</h3>
+      <p class="loading-sub">Torch AI is finding your best career match</p>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       RESULTS SCREEN
+  ══════════════════════════════════════════════════════════ -->
+  <section id="screen-results" class="screen">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-text">CIR<span>e</span>N</span>
+        <span class="logo-badge">Torch AI</span>
+      </div>
+    </header>
+
+    <div class="results-layout">
+      <div class="results-header">
+        <div class="results-eyebrow">
+          <i data-lucide="star"></i>
+          Your Recommended Path
+        </div>
+        <h2>We found your match.</h2>
+      </div>
+
+      <!-- Main recommendation card -->
+      <div class="result-card">
+        <div class="result-card-top">
+          <span id="result-field-badge">CS / IT</span>
+          <div class="result-match-pill">
+            <i data-lucide="check-circle-2"></i>
+            Best Match
+          </div>
+        </div>
+
+        <h3 id="result-title">Software Engineering</h3>
+        <p id="result-description">Description here</p>
+
+        <div id="result-skills"></div>
+
+        <div class="result-reasoning-box">
+          <div class="reasoning-label">
+            <i data-lucide="sparkles"></i>
+            Why this fits you
+          </div>
+          <p id="result-reasoning">Reasoning here</p>
+        </div>
+
+        <a id="result-kit-btn" href="#" target="_blank" rel="noopener" class="btn-kit">
+          <i data-lucide="book-open"></i>
+          Open Career Kit
+          <i data-lucide="external-link"></i>
+        </a>
+      </div>
+
+      <!-- Alternative suggestion -->
+      <div id="result-alternative" style="display:none;">
+        <div>
+          <div class="alt-label">Also consider</div>
+          <div id="result-alt-title">Alternative Path</div>
+          <div id="result-alt-field">Field</div>
+        </div>
+        <a id="result-alt-link" href="#" target="_blank" rel="noopener">
+          View Kit
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Actions -->
+      <div class="results-actions">
+        <button id="btn-retake" class="btn-secondary">
+          <i data-lucide="refresh-cw"></i>
+          Retake Quiz
+        </button>
+        <button id="btn-browse-from-results" class="btn-ghost">
+          <i data-lucide="grid-3x3"></i>
+          Browse All Kits
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       BROWSE ALL KITS SCREEN
+  ══════════════════════════════════════════════════════════ -->
+  <section id="screen-browse" class="screen">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-text">CIR<span>e</span>N</span>
+        <span class="logo-badge">Torch AI</span>
+      </div>
+    </header>
+
+    <div class="browse-layout">
+      <div class="browse-page-header">
+        <h2>Career Kit Library</h2>
+        <p>Browse all 23 career kits across 3 fields</p>
+      </div>
+
+      <div class="browse-actions">
+        <button id="btn-back-from-browse" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Home
+        </button>
+        <button id="btn-find-from-browse" class="btn-primary">
+          <i data-lucide="zap"></i>
+          Find My Path
+        </button>
+      </div>
+
+      <div id="browse-fields"></div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/kits.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Init Lucide icons after DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
