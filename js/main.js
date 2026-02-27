@@ -87,6 +87,12 @@ function initWelcome() {
     renderBrowse();
     showScreen("browse");
   });
+
+  // logo click returns to home
+  document.querySelectorAll('.logo').forEach((el) => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => showScreen('welcome'));
+  });
 }
 
 // ─── Question Flow ────────────────────────────────────────────────────────────
