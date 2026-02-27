@@ -319,5 +319,43 @@ document.addEventListener("DOMContentLoaded", () => {
   initBrowse();
   showScreen("welcome");
 
+  initTheme();
   if (window.lucide) lucide.createIcons();
 });
+
+// ─── Theme toggle ───────────────────────────────────────────────────────────
+function initTheme() {
+  const buttons = document.querySelectorAll('.theme-toggle');
+  if (buttons.length === 0) return;
+
+  const setTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateIcons(theme);
+  };
+
+  const updateIcons = (theme) => {
+    buttons.forEach((btn) => {
+      const icon = btn.querySelector('i');
+      if (icon) icon.setAttribute('data-lucide', theme === 'light' ? 'sun' : 'moon');
+    });
+    if (window.lucide) lucide.createIcons();
+  };
+
+  // load stored or default (fall back to system preference)
+  const stored = localStorage.getItem('theme');
+  let initial;
+  if (stored === 'light' || stored === 'dark') {
+    initial = stored;
+  } else {
+    initial = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  setTheme(initial);
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      setTheme(current);
+    });
+  });
+}
