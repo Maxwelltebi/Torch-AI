@@ -1,6 +1,6 @@
 // ============================================================
-// CONFIG — Replace with your actual Anthropic API key
+// CONFIG — Replace with your actual Gemini API key
 // ============================================================
 const CONFIG = {
-  ANTHROPIC_API_KEY: "YOUR_API_KEY_HERE",
+  GEMINI_API_KEY: "YOUR_API_KEY_HERE",
 };
