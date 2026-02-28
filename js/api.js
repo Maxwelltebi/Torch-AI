@@ -1,4 +1,4 @@
-// api.js — Handles Claude API calls for career path recommendation
+// api.js — Handles Gemini API calls for career path recommendation
 
 async function getCareerRecommendation(answers) {
   const kitList = CAREER_KITS.map((k) => `- ${k.id}: ${k.title} (${k.field})`).join("\n");
@@ -49,18 +49,25 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no extr
   "alternativeId": "another-kit-id-as-backup"
 }`;
 
-  const response = await fetch("https://api.anthropic.com/v1/messages", {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${CONFIG.GEMINI_API_KEY}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": CONFIG.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerous-direct-browser-access": "true",
     },
     body: JSON.stringify({
-      model: "claude-sonnet-4-6",
-      max_tokens: 500,
-      messages: [{ role: "user", content: prompt }],
+      contents: [
+        {
+          parts: [
+            {
+              text: prompt,
+            },
+          ],
+        },
+      ],
+      generationConfig: {
+        maxOutputTokens: 500,
+        temperature: 0.7,
+      },
     }),
   });
 
@@ -70,7 +77,7 @@ Respond ONLY with a valid JSON object in this exact format (no markdown, no extr
   }
 
   const data = await response.json();
-  const text = data.content?.[0]?.text || "";
+  const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
   try {
     const clean = text.replace(/```json|```/g, "").trim();
