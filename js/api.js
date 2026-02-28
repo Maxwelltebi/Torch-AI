@@ -7,20 +7,37 @@ async function getCareerRecommendation(answers) {
 
 A student has answered the following questions:
 
-1. What is your major or field of study?
-Answer: ${answers.major}
+=== ACADEMIC & EXPERIENCE ===
+1. Major/Field of Study: ${answers.major}
+2. Year of Study: ${answers.year}
+7. Past Experience: ${answers.experience}
 
-2. What activities or topics excite you most?
-Answer: ${answers.interests}
+=== WORK PREFERENCES ===
+3. Work Style: ${answers.workStyle}
+4. Work Environment: ${answers.environment}
+13. Work-Life Balance Importance: ${answers.workLife}
 
-3. What kind of work environment do you prefer?
-Answer: ${answers.environment}
+=== TECHNICAL BACKGROUND ===
+5. Technical Comfort Level: ${answers.techComfort}
+6. Technical Skills: ${answers.techSkills}
 
-4. What is your primary career goal?
-Answer: ${answers.goal}
+=== LEARNING & PROBLEM-SOLVING ===
+8. Learning Style: ${answers.learningStyle}
+9. Problem-Solving Approach: ${answers.problemSolving}
 
-5. What is your strongest skill or quality?
-Answer: ${answers.strength}
+=== INTERESTS & AMBITIONS ===
+10. Topics of Interest: ${answers.interests}
+11. Long-term Ambition: ${answers.ambition}
+12. Career Values: ${answers.values}
+
+=== STRENGTHS & PREFERENCES ===
+14. Greatest Strengths: ${answers.strengths}
+15. What to Avoid: ${answers.dislikes}
+16. Leadership Interest: ${answers.leadership}
+17. Industry Preference: ${answers.industry}
+
+=== ADDITIONAL NOTES ===
+18. Anything Else: ${answers.extra || "(Not provided)"}
 
 Based on their answers, recommend the SINGLE most relevant career path from this list:
 ${kitList}
